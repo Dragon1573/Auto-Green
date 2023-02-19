@@ -1,0 +1,73 @@
+name: Auto Green
+
+
+on:
+  # 在提交到 main 分支的时候自动触发
+  push:
+    branches:
+      - main
+
+  # 世界协调时每天凌晨 00:00 自动执行
+  # 即北京时间每天上午 08:00
+  schedule:
+    - cron: 0 0 * * *
+
+  # 也可以手动触发执行
+  workflow_dispatch:
+
+
+permissions:
+  # GitHub Actions 默认具备只读权限，需要在此显式授权
+  checks: write
+  contents: write
+  statuses: write
+
+
+jobs:
+  autogreen:
+    name: Auto Green
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Configure Git identity
+        run: |
+          git config --global user.name "Dragon1573"
+          git config --global user.email "49941141+Dragon1573@users.noreply.github.com"
+      
+      - name: Check configurations
+        run: |
+          echo "::group::Repository level configurations"
+          echo "Username:"
+          git config --local user.name || echo "!!! Not set !!!"
+          echo "Email Address:"
+          git config --local user.email || echo "!!! Not set !!!"
+          echo "::endgroup::"
+          echo "::group::User level configurations"
+          echo "Username:"
+          git config user.name || echo "!!! Not set !!!"
+          echo "Email Address:"
+          git config user.email || echo "!!! Not set !!!"
+          echo "::endgroup::"
+          echo "::group::Global level configurations"
+          echo "Username:"
+          git config --global user.name || echo "!!! Not set !!!"
+          echo "Email Address:"
+          git config --global user.email || echo "!!! Not set !!!"
+          echo "::endgroup::"
+
+      - name: Create empty commit
+        run: |
+          git commit --allow-empty -m "GitHub Actions: Keep my chart green"
+
+      - name: Commits Push (Dry run)
+        if: github.event_name == 'push'
+        run: |
+          git push --dry-run --verbose --progress --force-with-lease
+
+      - name: Commit Push (Actual commit)
+        if: github.event_name != 'push'
+        run: |
+          git push --verbose --progress --force-with-lease
