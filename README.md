@@ -1,13 +1,13 @@
-<div style="text-align: center;">
+<center>
   <h1>Auto Green</h1>
   <a href="https://github.com/Dragon1573/Auto-Green/actions/workflows/actions.yml">
   	<img src="https://github.com/Dragon1573/Auto-Green/actions/workflows/actions.yml/badge.svg" alt="Automated with GitHub Actions" />
   </a>
+  &nbsp;
   <a href="">
     <img alt="Licensed under MIT" src="https://img.shields.io/github/license/Dragon1573/Auto-Green?color=blue&label=License&style=flat">
   </a>
-</div>
-
+</center>
 
 自动保持 GitHub 提交状态常绿。
 
@@ -21,8 +21,8 @@
 
 ### Step 1 - 创建远程仓库
 
-- :warning: **不要直接 Fork 本项目！**所有在 Fork 上的贡献不会被 GitHub 统计。
-- :warning: **不推荐将此仓库设置为私有！**GitHub 默认不统计用户在私有仓库中的贡献，但你可以在 User Profile 页面上勾选以添加此类统计。
+- :warning: **不要直接 Fork 本项目！** 所有在 Fork 上的贡献不会被 GitHub 统计。
+- :warning: **不推荐将此仓库设置为私有！** GitHub 默认不统计用户在私有仓库中的贡献，但你可以在 User Profile 页面上勾选以添加此类统计。
 
 >  具体原因详见 [为什么我的贡献没有在我的个人资料中显示？](https://docs.github.com/zh/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/why-are-my-contributions-not-showing-up-on-my-profile)
 
